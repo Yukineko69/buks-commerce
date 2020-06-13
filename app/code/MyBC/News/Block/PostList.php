@@ -6,7 +6,6 @@ use MyBC\News\Model\ResourceModel\Post\Collection as PostCollection;
 
 class PostList extends \Magento\Framework\View\Element\Template implements
     \Magento\Framework\DataObject\IdentityInterface {
-
     /**
      * @var \MyBC\News\Model\ResourceModel\Post\CollectionFactory
      */
@@ -30,12 +29,11 @@ class PostList extends \Magento\Framework\View\Element\Template implements
                 ->create()
                 ->addFilter('is_active', 1)
                 ->addOrder(
-                    PostInterface::PUBLISHED_DATE,
+                    PostInterface::CREATION_TIME,
                     PostCollection::SORT_ORDER_DESC
                 );
             $this->setData('posts', $posts);
         }
-
         return $this->getData('posts');
     }
 
@@ -44,8 +42,7 @@ class PostList extends \Magento\Framework\View\Element\Template implements
      *
      * @return array
      */
-    public function getIdentities()
-    {
+    public function getIdentities() {
         return [\MyBC\News\Model\Post::CACHE_TAG . '_' . 'list'];
     }
 

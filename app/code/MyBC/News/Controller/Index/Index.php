@@ -15,12 +15,11 @@ class Index extends Action
     }
 
     /**
-     * News Index, shows a list of recent News posts.
+     * News Index, shows a list of recent news posts.
      *
      * @return \Magento\Framework\View\Result\PageFactory
      */
-    public function execute()
-    {
+    public function execute() {
         return $this->resultPageFactory->create();
     }
 }

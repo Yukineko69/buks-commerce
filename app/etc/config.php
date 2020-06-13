@@ -244,7 +244,6 @@ return [
         'MSP_TwoFactorAuth' => 1,
         'MagePal_GmailSmtpApp' => 1,
         'Mageplaza_Core' => 1,
-        'MyBC_Blog' => 1,
         'MyBC_News' => 1,
         'Tawk_Widget' => 1,
         'Temando_ShippingRemover' => 1,

@@ -1,19 +1,19 @@
 <?php /** @var $block \MyBC\News\Block\PostList */ ?>
 <h1><?php echo __('Latest News Posts') ?></h1>
-<ul class="News-post-list">
+<ul class="news-post-list">
 <?php /** @var $post \MyBC\News\Model\Post */ ?>
 <?php foreach ($block->getPosts() as $post): ?>
-    <li class="News-post-list-item">
-        <h3 class="News-post-item-title">
-            <a href="<?php echo $post->getUrl() ?>"><?php echo $post->getTitle() ?></a>
+    <li class="news-post-list-item">
+        <h3 class="news-post-item-title">
+            <a href="<?php echo $post->getUrlKey() ?>"><?php echo $post->getTitle() ?></a>
         </h3>
 
-        <div class="News-post-item-content">
+        <div class="news-post-item-content">
             <?php echo $post->getContent(); ?>
         </div>
 
-        <div class="News-post-item-meta">
-            <strong><?php echo __('Created at:') ?></strong> <?php echo $post->getPublishedDate() ?>
+        <div class="news-post-item-meta">
+            <strong><?php echo __('Created at:') ?></strong> <?php echo $post->getCreationTime() ?>
         </div>
     </li>
 <?php endforeach; ?>

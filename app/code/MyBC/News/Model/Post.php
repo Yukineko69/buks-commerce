@@ -6,8 +6,8 @@ use Magento\Framework\DataObject\IdentityInterface;
 class Post  extends \Magento\Framework\Model\AbstractModel implements PostInterface, IdentityInterface {
 
     /**#@+
-    * Post's Statuses
-    */
+     * Post's Statuses
+     */
     const STATUS_ENABLED = 1;
     const STATUS_DISABLED = 0;
     /**#@-*/
@@ -15,45 +15,39 @@ class Post  extends \Magento\Framework\Model\AbstractModel implements PostInterf
     /**
      * CMS page cache tag
      */
-    const CACHE_TAG = 'News_post';
+    const CACHE_TAG = 'news_post';
 
-    protected $_cacheTag = 'News_post';
+    protected $_cacheTag = 'news_post';
 
     /**
      * Prefix of model events names
      *
      * @var string
      */
-    protected $_eventPrefix = 'News_post';
+    protected $_eventPrefix = 'news_post';
 
-    /**
-     * Initialize resource model
-     *
-     * @return void
-     */
     protected function _construct() {
         $this->_init('MyBC\News\Model\ResourceModel\Post');
     }
 
     /**
-     * Check if post url exists
+     * Check if post url key exists
      * return post id if post exists
      *
-     * @param string $url
+     * @param string $url_key
      * @return int
      */
-    public function checkUrl($url) {
-        return $this->_getResource()->checkUrl($url);
+    public function checkUrlKey($url_key) {
+        return $this->_getResource()->checkUrlKey($url_key);
     }
 
     /**
      * Prepare post's statuses.
-     * Available event blog_post_get_available_statuses to customize statuses.
+     * Available event news_post_get_available_statuses to customize statuses.
      *
      * @return array
      */
-    public function getAvailableStatuses()
-    {
+    public function getAvailableStatuses() {
         return [self::STATUS_ENABLED => __('Enabled'), self::STATUS_DISABLED => __('Disabled')];
     }
 
@@ -70,8 +64,8 @@ class Post  extends \Magento\Framework\Model\AbstractModel implements PostInterf
         return $this->getData(self::POST_ID);
     }
 
-    public function getUrl() {
-        return $this->getData(self::URL);
+    public function getUrlKey() {
+        return $this->getData(self::URL_KEY);
     }
 
     public function getTitle() {
@@ -82,20 +76,20 @@ class Post  extends \Magento\Framework\Model\AbstractModel implements PostInterf
         return $this->getData(self::CONTENT);
     }
 
-    public function isActive() {
-        return (bool) $this->getData(self::IS_ACTIVE);
+    public function getCreationTime() {
+        return $this->getData(self::CREATION_TIME);
     }
 
-    public function getPublishedDate() {
-        return $this->getData(self::PUBLISHED_DATE);
+    public function isActive() {
+        return (bool) $this->getData(self::IS_ACTIVE);
     }
 
     public function setId($id) {
         return $this->setData(self::POST_ID, $id);
     }
 
-    public function setUrl($url) {
-        return $this->setData(self::URL, $url);
+    public function setUrlKey($url_key) {
+        return $this->setData(self::URL_KEY, $url_key);
     }
 
     public function setTitle($title) {
@@ -106,11 +100,12 @@ class Post  extends \Magento\Framework\Model\AbstractModel implements PostInterf
         return $this->setData(self::CONTENT, $content);
     }
 
+    public function setCreationTime($creation_time) {
+        return $this->setData(self::CREATION_TIME, $creation_time);
+    }
+
     public function setIsActive($is_active) {
         return $this->setData(self::IS_ACTIVE, $is_active);
     }
 
-    public function setPublishedDate($published_date) {
-        return $this->setData(self::PUBLISHED_DATE, $published_date);
-    }
 }

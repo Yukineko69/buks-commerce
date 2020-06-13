@@ -1,5 +1,4 @@
-<?php
-namespace MyBC\News\Helper;
+<?php namespace MyBC\News\Helper;
 
 use Magento\Framework\App\Action\Action;
 
@@ -26,7 +25,7 @@ class Post extends \Magento\Framework\App\Helper\AbstractHelper {
     }
 
     /**
-     * Return a News post from given post id.
+     * Return a news post from given post id.
      *
      * @param Action $action
      * @param null $postId
@@ -51,16 +50,16 @@ class Post extends \Magento\Framework\App\Helper\AbstractHelper {
         /** @var \Magento\Framework\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
         // We can add our own custom page handles for layout easily.
-        $resultPage->addHandle('News_post_view');
+        $resultPage->addHandle('news_post_view');
 
-        // This will generate a layout handle like: News_post_view_id_1
-        // giving us a unique handle to target specific News posts if we wish to.
+        // This will generate a layout handle like: news_post_view_id_1
+        // giving us a unique handle to target specific news posts if we wish to.
         $resultPage->addPageLayoutHandles(['id' => $this->_post->getId()]);
 
         // Magento is event driven after all, lets remember to dispatch our own, to help people
         // who might want to add additional functionality, or filter the posts somehow!
         $this->_eventManager->dispatch(
-            'MyBC_News_post_render',
+            'mybc_news_post_render',
             ['post' => $this->_post, 'controller_action' => $action]
         );
 

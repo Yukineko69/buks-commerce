@@ -29,21 +29,21 @@ class Router implements \Magento\Framework\App\RouterInterface {
      * @return bool
      */
     public function match(\Magento\Framework\App\RequestInterface $request) {
-        $url = trim($request->getPathInfo(), '/News/');
-        $url = rtrim($url, '/');
+        $url_key = trim($request->getPathInfo(), '/news/');
+        $url_key = rtrim($url_key, '/');
 
         /** @var \MyBC\News\Model\Post $post */
         $post = $this->_postFactory->create();
-        $post_id = $post->checkUrl($url);
+        $post_id = $post->checkUrlKey($url_key);
         if (!$post_id) {
             return null;
         }
 
-        $request->setModuleName('News')
+        $request->setModuleName('news')
             ->setControllerName('view')
             ->setActionName('index')
             ->setParam('post_id', $post_id);
-        $request->setAlias(\Magento\Framework\Url::REWRITE_REQUEST_PATH_ALIAS, $url);
+        $request->setAlias(\Magento\Framework\Url::REWRITE_REQUEST_PATH_ALIAS, $url_key);
 
         return $this->actionFactory->create('Magento\Framework\App\Action\Forward');
     }

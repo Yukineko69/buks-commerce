@@ -3,12 +3,12 @@
 /** @var $post \MyBC\News\Model\Post */
 $post = $block->getPost();
 ?>
-<h1 class="News-post-item-title"><?php echo $post->getTitle() ?></h1>
+<h1 class="news-post-item-title"><?php echo $post->getTitle() ?></h1>
 
-<div class="News-post-item-content">
+<div class="news-post-item-content">
     <?php echo $post->getContent(); ?>
 </div>
 
-<div class="News-post-item-meta">
-    <strong><?php echo __('Created at:') ?></strong> <?php echo $post->getPublishedDate() ?>
+<div class="news-post-item-meta">
+    <strong><?php echo __('Created at:') ?></strong> <?php echo $post->getCreationTime() ?>
 </div>

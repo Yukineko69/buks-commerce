@@ -19,10 +19,6 @@ class PostView extends \Magento\Framework\View\Element\Template implements
      * @return \MyBC\News\Model\Post
      */
     public function getPost() {
-        // Check if posts has already been defined
-        // makes our block nice and re-usable! We could
-        // pass the 'posts' data to this block, with a collection
-        // that has been filtered differently!
         if (!$this->hasData('post')) {
             if ($this->getPostId()) {
                 /** @var \MyBC\News\Model\Post $page */
@@ -40,8 +36,7 @@ class PostView extends \Magento\Framework\View\Element\Template implements
      *
      * @return array
      */
-    public function getIdentities()
-    {
+    public function getIdentities() {
         return [\MyBC\News\Model\Post::CACHE_TAG . '_' . $this->getPost()->getId()];
     }
 

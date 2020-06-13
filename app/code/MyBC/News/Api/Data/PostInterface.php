@@ -3,34 +3,34 @@ namespace MyBC\News\Api\Data;
 
 
 interface PostInterface {
-    const POST_ID        = 'post_id';
-    const URL            = 'url';
-    const TITLE          = 'title';
-    const CONTENT        = 'content';
-    const PUBLISHED_DATE = 'published_date';
-    const IS_ACTIVE      = 'is_active';
+    const POST_ID       = 'post_id';
+    const URL_KEY       = 'url_key';
+    const TITLE         = 'title';
+    const CONTENT       = 'content';
+    const CREATION_TIME = 'creation_time';
+    const IS_ACTIVE     = 'is_active';
 
     public function getId();
 
-    public function getUrl();
+    public function getUrlKey();
 
     public function getTitle();
 
     public function getContent();
 
-    public function isActive();
+    public function getCreationTime();
 
-    public function getPublishedDate();
+    public function isActive();
 
     public function setId($id);
 
-    public function setUrl($url);
+    public function setUrlKey($url_key);
 
     public function setTitle($title);
 
     public function setContent($content);
 
-    public function setIsActive($isActive);
+    public function setCreationTime($creationTime);
 
-    public function setPublishedDate($published_date);
+    public function setIsActive($isActive);
 }
