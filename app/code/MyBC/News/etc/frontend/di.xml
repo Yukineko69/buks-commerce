@@ -12,4 +12,9 @@
             </argument>
         </arguments>
     </type>
+
+    <type name="Magento\Theme\Block\Html\Topmenu">
+        <plugin name="news-topmenu" type="MyBC\News\Plugin\Block\Topmenu" />
+    </type>
+
 </config>

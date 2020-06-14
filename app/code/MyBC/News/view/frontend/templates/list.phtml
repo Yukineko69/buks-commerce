@@ -1,5 +1,5 @@
 <?php /** @var $block \MyBC\News\Block\PostList */ ?>
-<h1><?php echo __('Latest News Posts') ?></h1>
+<h1><?php echo __('Những tin tức gần đây nhất') ?></h1>
 <ul class="news-post-list">
 <?php /** @var $post \MyBC\News\Model\Post */ ?>
 <?php foreach ($block->getPosts() as $post): ?>
@@ -13,7 +13,7 @@
         </div>
 
         <div class="news-post-item-meta">
-            <strong><?php echo __('Created at:') ?></strong> <?php echo $post->getCreationTime() ?>
+            <strong><?php echo __('Ngày đăng tải:') ?></strong> <?php echo $post->getCreationTime() ?>
         </div>
     </li>
 <?php endforeach; ?>
