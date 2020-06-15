@@ -7,6 +7,10 @@ class LatestNews extends \Magento\Framework\View\Element\Template {
 		parent::__construct($context);
 	}
 
+    // public function _prepareLayout() {
+    //     // $this->pageConfig->getTitle()->set(__('Tin tức nổi bật'));
+    // }
+
 	public function sayHello() {
 		return '';
 	}

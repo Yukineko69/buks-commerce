@@ -2,11 +2,11 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
 
     <head>
-        <title>Tin tức nổi bật</title>
+        <title>Thời tiết</title>
     </head>
 
     <referenceContainer name="content">
-        <block class="MyBC\LatestNews\Block\LatestNews" name="latestnews_latestnews" template="MyBC_LatestNews::latestnews.phtml" />
+        <block class="MyBC\Weather\Block\Weather" name="weather_weather" template="MyBC_Weather::weather.phtml" />
     </referenceContainer>
 
 </page>

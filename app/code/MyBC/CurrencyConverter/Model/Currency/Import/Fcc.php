@@ -6,7 +6,7 @@ class Fcc extends \Magento\Directory\Model\Currency\Import\AbstractImport {
     // api v3
     // const CURRENCY_CONVERTER_URL = 'https://free.currencyconverterapi.com/api/v3/convert?apiKey={{API_KEY}}&q={{CURRENCY_FROM}}_{{CURRENCY_TO}}';
 
-    // api v7 
+    // api v7
     const CURRENCY_CONVERTER_URL = 'https://free.currconv.com/api/v7/convert?q={{CURRENCY_FROM}}_{{CURRENCY_TO}}&apiKey={{API_KEY}}';
 
 
@@ -63,7 +63,7 @@ class Fcc extends \Magento\Directory\Model\Currency\Import\AbstractImport {
             if (!$queryCount && !isset($results)) {
                 $this->_messages[] = __('We can\'t retrieve a rate from %1.', $url);
             } else {
-                $result = number_format($results['val'], 15);
+                $result = number_format($results['val'], 15); //Đổi number format từ scientific notation sang dạng số thập phân
             }
 
         } catch (\Exception $e) {

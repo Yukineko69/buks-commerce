@@ -2,11 +2,11 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
 
     <head>
-        <title>Tin tức nổi bật</title>
+        <title>Tỷ giá tiền tệ</title>
     </head>
 
     <referenceContainer name="content">
-        <block class="MyBC\LatestNews\Block\LatestNews" name="latestnews_latestnews" template="MyBC_LatestNews::latestnews.phtml" />
+        <block class="MyBC\ExchangeRate\Block\ExchangeRate" name="exchangerate_exchangerate" template="MyBC_ExchangeRate::exchangerate.phtml" />
     </referenceContainer>
 
 </page>

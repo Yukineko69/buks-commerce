@@ -1,6 +1,6 @@
 <?php
 
-namespace MyBC\LatestNews\Plugin\Block;
+namespace MyBC\ExchangeRate\Plugin\Block;
 
 use Magento\Framework\Data\Tree\NodeFactory;
 
@@ -35,9 +35,9 @@ class Topmenu {
 
     protected function getNodeAsArray() {
         return [
-            'name' => __('Tin tức nổi bật'),
-            'id' => 'mybc-latestnews-navitem',
-            'url' => 'http://127.0.0.1/magento/latestnews/index/latestnews',
+            'name' => __('Tỷ giá tiền tệ'),
+            'id' => 'mybc-exchangerate-navitem',
+            'url' => 'http://127.0.0.1/magento/exchangerate/index/exchangerate',
             'has_active' => false,
             'is_active' => false // (expression to determine if menu item is selected or not)
         ];
