@@ -245,7 +245,7 @@ return [
         'MagePal_GmailSmtpApp' => 1,
         'Mageplaza_Core' => 1,
         'MyBC_CurrencyConverter' => 1,
-        'MyBC_News' => 1,
+        'MyBC_LatestNews' => 1,
         'MyBC_ProductById' => 1,
         'Tawk_Widget' => 1,
         'Temando_ShippingRemover' => 1,

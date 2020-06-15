@@ -1,10 +1,11 @@
 <?php
 
-namespace MyBC\News\Plugin\Block;
+namespace MyBC\LatestNews\Plugin\Block;
 
 use Magento\Framework\Data\Tree\NodeFactory;
 
 class Topmenu {
+
     /**
      * @var NodeFactory
      */
@@ -34,9 +35,9 @@ class Topmenu {
 
     protected function getNodeAsArray() {
         return [
-            'name' => __('Tin tức'),
-            'id' => 'mybc_news_navitem',
-            'url' => './news',
+            'name' => __('Tin tức nổi bật'),
+            'id' => 'mybc-latestnews-navitem',
+            'url' => './latestnews/index/latestnews',
             'has_active' => false,
             'is_active' => false // (expression to determine if menu item is selected or not)
         ];

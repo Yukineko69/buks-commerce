@@ -1,0 +1,94 @@
+<?php
+
+/**
+ * @var \MyBC\LatestNews\Block\LatestNews $block
+ */
+
+?>
+
+<div id="content"></div>
+
+<script>
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            addModule(JSON.parse(this.responseText).items);
+        }
+    };
+    xhttp.open("GET", "https://api.rss2json.com/v1/api.json?rss_url=" + "https://vnexpress.net/rss/suc-khoe.rss", true);
+    xhttp.send();
+
+    function htmlToElement(html) {
+        var template = document.createElement('template');
+        html = html.trim(); // Never return a text node of whitespace as the result
+        template.innerHTML = html;
+        return template.content.firstChild;
+    }
+
+    function addModule(data) {
+
+        var content = document.getElementById("content");
+        content.appendChild(htmlToElement(`<div class='dmphuc3'>Tin tức hàng ngày</div>`))
+
+        for (var i = 0; i < data.length; i++) {
+            var item = htmlToElement(
+                `<div class="itemhfix">`  +
+                    `<a href=${data[i].link}><img class='dmphuc' src=${data[i].thumbnail} /></a>`  +
+                `<div class = "maincc" >` +
+                `<a  href = ` + data[i].link + ` class = "titlecc" >` + data[i].title + `</a>` +
+                `<p class='dmphuc2'>` +
+                data[i].content.split("</a>")[1] +
+                `<p>` +
+                `</div>` +
+                `</div>`
+            );
+            content.appendChild(item);
+        }
+
+    }
+</script>
+
+<style>
+.page-title-wrapper {
+    display: none;
+}
+    .dmphuc {
+        height : 200px;
+        width : auto;
+        max-width: 300px;
+    }
+
+    .dmphuc3 {
+        font-size : 40px;
+    }
+
+    .itemhfix {
+        display: flex;
+
+        margin: 30px;
+    }
+    a {
+        margin-right: 10px;
+    }
+
+
+    .titlecc {
+        font-weight: bold;
+        font-size: 1.6rem;
+        padding: 5px 0px 5px 0px;
+    }
+
+    .dmphuc2 {
+        margin-top: 30px;
+    }
+
+    .maincc {
+        padding: unset;
+        margin : 10px 0px 10px 50px;
+    }
+
+    a.titlecc:hover {
+        text-decoration: underline;
+    }
+
+</style>
