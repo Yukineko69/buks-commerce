@@ -32,11 +32,12 @@
 
         for (var i = 0; i < data.length; i++) {
             var item = htmlToElement(
-                `<div class="news-container">` +
+                `<div class="news-container hovereffect">` +
                     `<a href=${data[i].link}><img class='news-img' src=${data[i].thumbnail} /></a>` +
                     `<div class="news-main" >` +
                         `<a href=${data[i].link} class="news-title" >${data[i].title}</a>` +
                         `<p class='news-content'>${data[i].content.split("</a>")[1]}<p>` +
+                        `<a href=${data[i].link}>Đọc thêm</a>` +
                     `</div>` +
                 `</div>`
             );
@@ -84,4 +85,11 @@ a.news-title:hover {
 .news-content {
     margin-top: 30px;
 }
+
+
+.hovereffect:hover {
+    box-shadow: 0 5px 35px 0px rgba(0,0,0,.1);
+}
+
+
 </style>
