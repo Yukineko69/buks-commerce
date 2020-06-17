@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 <?php
 
 /**
@@ -5,6 +7,106 @@
  */
 
 ?>
-<p align="center">
+<!-- <p align="center">
     <iframe src="https://tygia.com/api.php?column=1&title=0&chart=0&gold=0&rate=1&ngoaite=usd,jpy,chf,eur,gbp,hkd&expand=0&color=eeffee&titlecolor=111111&bgcolor=&upcolor=00aa00&downcolor=bb0000&textcolor=333333&nganhang=VIETCOM&fontsize=80&ngay=&column=2" width="80%"></iframe>
-</p>
+</p> -->
+
+<?php
+
+$ch = curl_init();
+$url = 'https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx?b=1';
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_URL, $url);
+$result = curl_exec($ch);
+curl_close($ch);
+$xml = simplexml_load_string($result);
+$json = json_encode($xml);
+$array = json_decode($json, TRUE);
+
+?>
+
+<?php
+    function getCurrencyNameVnese($currencyCode) {
+        switch ($currencyCode) {
+            case 'AUD':
+                return "ĐÔ LA ÚC";
+            case 'CAD':
+                return "ĐÔ LA CANADA";
+            case 'CHF':
+                return "FRANCE THỤY SĨ";
+            case 'CNY':
+                return "NHÂN DÂN TỆ";
+            case 'DKK':
+                return "KRONE ĐAN MẠCH";
+            case 'EUR':
+                return "EURO";
+            case 'GBP':
+                return "BẢNG ANH";
+            case 'HKD':
+                return "ĐÔ LA HỒNG KÔNG";
+            case 'INR':
+                return "RUPEE ẤN ĐỘ";
+            case 'JPY':
+                return "YÊN NHẬT";
+            case 'KRW':
+                return "WON HÀN QUỐC";
+            case 'KWD':
+                return "DINAR KUWAIT";
+            case 'MYR':
+                return "RINGGIT MÃ LAI";
+            case 'NOK':
+                return "KRONE NA UY";
+            case 'RUB':
+                return "RÚP NGA";
+            case 'SAR':
+                return "RIYAL Ả RẬP SAUDI";
+            case 'SEK':
+                return "KRONA THỤY ĐIỂN";
+            case 'SGD':
+                return "ĐÔ LA SINGAPORE";
+            case 'THB':
+                return "BAHT THÁI LAN";
+            case 'USD':
+                return "ĐÔ LA MỸ";
+            default:
+                return "Mã Quốc Gia Không Hợp Lệ!";
+        }
+    }
+?>
+
+<table class="table" style="margin-top: 40px;">
+    <thead>
+    <tr>
+        <th scope="col" class="bigger">STT</th>
+        <th scope="col" class="bigger">Mã Tiền Tệ</th>
+        <th scope="col" class="bigger">Tên Đồng Tiền</th>
+        <th scope="col" class="bigger">Tỷ Giá Mua Vào</th>
+        <th scope="col" class="bigger">Tỷ Giá Chuyển Khoản</th>
+        <th scope="col" class="bigger">Tỷ Giá Bán Ra</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($array['Exrate'] as $k => $currency): ?>
+        <?php
+            $countryCode = substr($currency['@attributes']['CurrencyCode'], 0, 2);
+        ?>
+        <tr>
+            <th scope="row" class="bigger"><?php echo $k+1 ?></th>
+            <td class="bigger">
+                <img src="https://www.countryflags.io/<?php echo $countryCode ?>/shiny/24.png">
+                <?php echo $currency['@attributes']['CurrencyCode'] ?></td>
+            <td class="bigger"><?php echo getCurrencyNameVnese($currency['@attributes']['CurrencyCode']) ?></td>
+            <td class="bigger"><?php echo $currency['@attributes']['Buy'] ?></td>
+            <td class="bigger"><?php echo $currency['@attributes']['Transfer'] ?></td>
+            <td class="bigger"><?php echo $currency['@attributes']['Sell'] ?></td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+
+<style media="screen">
+    .bigger {
+        font-size: 130%;
+    }
+</style>

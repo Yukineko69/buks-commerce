@@ -34,10 +34,15 @@ class Topmenu {
     }
 
     protected function getNodeAsArray() {
+        $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+        $parsedUrl = parse_url($root);
+        // $root = $parsedUrl['scheme'] . '://' . $parsedUrl['host'] . $parsedUrl['path'];
+        $root = $parsedUrl['scheme'] . '://' . $parsedUrl['host'] . '/magento';
+        $url = $root . '/latestnews/index/latestnews';
         return [
             'name' => __('Tin tức nổi bật'),
             'id' => 'mybc-latestnews-navitem',
-            'url' => 'http://127.0.0.1/magento/latestnews/index/latestnews',
+            'url' => $url,
             'has_active' => false,
             'is_active' => false // (expression to determine if menu item is selected or not)
         ];

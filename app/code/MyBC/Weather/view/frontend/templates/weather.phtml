@@ -9,11 +9,25 @@
 <!-- <div id="cont_63a06cc49ba6011046904f51f97f68d8"><script type="text/javascript" async src="https://www.theweather.com/wid_loader/63a06cc49ba6011046904f51f97f68d8"></script></div> -->
 
 <?php
+
+$ch2 = curl_init();
+$url = 'http://ip-api.com/json/';
+curl_setopt($ch2, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch2, CURLOPT_URL, $url);
+$location_result = curl_exec($ch2);
+$location_result = json_decode($location_result);
+curl_close($ch2);
+$lat = $location_result->lat;
+$lon = $location_result->lon;
+$country = $location_result->country;
+$city = $location_result->city;
+
 // Your code here!
 $ch = curl_init();
 // IMPORTANT: the below line is a security risk, read https://paragonie.com/blog/2017/10/certainty-automated-cacert-pem-management-for-php-software
 // in most cases, you should set it to true
-$url = 'http://api.openweathermap.org/data/2.5/onecall?lat=21.027763&lon=105.834160&units=metric&lang=vi&APPID=';
+$url = 'http://api.openweathermap.org/data/2.5/onecall?lat='.$lat.'&lon='.$lon.'&units=metric&lang=vi&APPID=';
 $api_key = '8ce73c1c103b372de3e5066d67ed7b15';
 $url = $url . $api_key;
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -68,7 +82,10 @@ $daily = $obj->daily;
         <div class="weather-side">
             <div class="weather-gradient"></div>
             <div class="date-mybc-weather-container">
-                <h2 class="date-dayname"><?php echo getDayofWeekName($today); ?></h2><span class="date-day"><?php echo date("d/m/Y"); ?></span>Địa điểm: <span class="location">Hanoi, VN</span></div>
+                <h2 class="date-dayname"><?php echo getDayofWeekName($today); ?></h2>
+                <span class="date-day"><?php echo date("d/m/Y"); ?></span>
+                Địa điểm: <span class="location"><?php echo $city ?>, <?php echo $country ?></span>
+            </div>
             <div class="weather-mybc-weather-container"><img src="<?php echo getIconUrl($current->weather[0]->icon); ?>" style="width:80%" />
                 <h1 class="weather-temp"><?php echo $current->temp; ?> °C</h1>
                 <h3 class="weather-desc"><?php echo $current->weather[0]->description; ?></h3>
@@ -154,23 +171,6 @@ $daily = $obj->daily;
     clear: both;
 }
 
-/* body {
-margin: 0;
-width: 100%;
-height: 100vh;
-font-family: 'Montserrat', sans-serif;
-background-color: #343d4b;
-display: -webkit-box;
-display: -ms-flexbox;
-display: flex;
--webkit-box-align: center;
--ms-flex-align: center;
-align-items: center;
--webkit-box-pack: center;
--ms-flex-pack: center;
-justify-content: center;
-} */
-
 .hotfix{
     margin: 0;
     width: 100%;
@@ -198,7 +198,8 @@ justify-content: center;
     position: relative;
     height: 100%;
     border-radius: 25px;
-    background-image: url("https://images.unsplash.com/photo-1559963110-71b394e7494d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80");
+    /* background-image: url("https://images.unsplash.com/photo-1559963110-71b394e7494d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80"); */
+    background-image: url("https://i.pinimg.com/originals/b8/6b/c2/b86bc2d435a63ff3c3199a8db558def1.jpg");
     width: 300px;
     -webkit-box-shadow: 0 0 20px -10px rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 20px -10px rgba(0, 0, 0, 0.2);
@@ -225,7 +226,7 @@ justify-content: center;
     left: 0;
     background-image: var(--gradient);
     border-radius: 25px;
-    opacity: 0.8;
+    opacity: 0.45;
 }
 
 .date-mybc-weather-container {
@@ -326,14 +327,14 @@ justify-content: center;
     -webkit-transform: scale(1.1);
     -ms-transform: scale(1.1);
     transform: scale(1.1);
-    background: #fff;
+    background: #3f99e8;
     color: #222831;
     -webkit-box-shadow: 0 0 40px -5px rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 40px -5px rgba(0, 0, 0, 0.2)
 }
 
 .week-list>li.active {
-    background: #fff;
+    background: #3f99e8;
     color: #222831;
     border-radius: 10px;
 }

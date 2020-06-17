@@ -34,10 +34,15 @@ class Topmenu {
     }
 
     protected function getNodeAsArray() {
+        $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+        $parsedUrl = parse_url($root);
+        // $root = $parsedUrl['scheme'] . '://' . $parsedUrl['host'] . $parsedUrl['path'];
+        $root = $parsedUrl['scheme'] . '://' . $parsedUrl['host'] . '/magento';
+        $url = $root . '/exchangerate/index/exchangerate';
         return [
             'name' => __('Tỷ giá tiền tệ'),
             'id' => 'mybc-exchangerate-navitem',
-            'url' => 'http://127.0.0.1/magento/exchangerate/index/exchangerate',
+            'url' => $url,
             'has_active' => false,
             'is_active' => false // (expression to determine if menu item is selected or not)
         ];

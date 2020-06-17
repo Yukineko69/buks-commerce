@@ -1,95 +1,85 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <?php
 
 /**
- * @var \MyBC\LatestNews\Block\LatestNews $block
- */
+* @var \MyBC\LatestNews\Block\LatestNews $block
+*/
 
 ?>
 
 <div id="content"></div>
 
-<script>
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            appendNewsContent(JSON.parse(this.responseText).items);
-        }
-    };
-    xhttp.open("GET", "https://api.rss2json.com/v1/api.json?rss_url=" + "https://vnexpress.net/rss/tin-moi-nhat.rss", true);
-    xhttp.send();
+<?php
 
-    function htmlToElement(html) {
-        var template = document.createElement('template');
-        html = html.trim();
-        template.innerHTML = html;
-        return template.content.firstChild;
-    }
+$ch = curl_init();
+$url = 'https://api.rss2json.com/v1/api.json?rss_url=https://vnexpress.net/rss/tin-moi-nhat.rss';
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_URL, $url);
+$result = curl_exec($ch);
+curl_close($ch);
+$data = json_decode($result);
 
-    function appendNewsContent(data) {
+?>
 
-        var content = document.getElementById("content");
-        // content.appendChild(htmlToElement(`<div class='latestnews-title'>Tin tức mới nhất trong ngày</div>`))
-
-        for (var i = 0; i < data.length; i++) {
-            var item = htmlToElement(
-                `<div class="news-container hovereffect">` +
-                    `<a href=${data[i].link}><img class='news-img' src=${data[i].thumbnail} /></a>` +
-                    `<div class="news-main" >` +
-                        `<a href=${data[i].link} class="news-title" >${data[i].title}</a>` +
-                        `<p class='news-content'>${data[i].content.split("</a>")[1]}<p>` +
-                        `<a href=${data[i].link}>Đọc thêm</a>` +
-                    `</div>` +
-                `</div>`
-            );
-            content.appendChild(item);
-        }
-
-    }
-</script>
+<div class="container" style="margin-top: 40px;">
+    <div class="row">
+        <?php foreach ($data->items as $k => $item): ?>
+            <?php
+                $desc = strip_tags($item->description);
+                $desc = substr($desc, 0, 125);
+                $desc = substr($desc, 0, strrpos($desc, ' ')) . "...";
+            ?>
+            <div class="col-sm-6">
+                <div class="card flex-md-row mb-4 box-shadow h-md-250 hovereffect">
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <div class="card-body d-flex flex-column align-items-start">
+                                <strong class="d-inline-block mb-2 text-primary">VnExpress</strong>
+                                <h4 class="mb-0">
+                                    <a class="text-dark font-weight-bold" href="<?php echo $item->link ?>"><?php echo $item->title ?></a>
+                                </h4>
+                                <br>
+                                <span><?php echo $item->pubDate ?></span>
+                                <p class="card-text mb-auto"><?php echo $desc ?></p>
+                                <span>
+                                <a href="<?php echo $item->link ?>" class="readmore">Đọc thêm<span class="label label-danger"><span class="glyphicon glyphicon-circle-arrow-right"></span></span></a>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <a href="<?php echo $item->link ?>">
+                                <img class="card-img-right flex-auto d-none d-md-block w-100 news-img" data-src="<?php echo $item->thumbnail ?>" style="width: 250px; height: 150px;" src="<?php echo $item->thumbnail ?>" data-holder-rendered="true">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
 
 <style>
-.latestnews-title {
-    font-size : 40px;
-}
 
-.news-container {
-    display: flex;
-    margin: 30px;
+.readmore {
+    color: red!important;
 }
 
 .news-img {
-    height : 200px;
-    width : auto;
-    max-width: 300px;
+    background: url('https://bitsofco.de/content/images/2018/12/Screenshot-2018-12-16-at-21.06.29.png') no-repeat scroll 0 0;
 }
 
-a {
-    margin-right: 10px;
+.hovereffect {
+    transition: all 0.2s ease;
 }
-
-.news-main {
-    padding: unset;
-    margin : 10px 0px 10px 50px;
-}
-
-.news-title {
-    font-weight: bold;
-    font-size: 1.6rem;
-    padding: 5px 0px 5px 0px;
-}
-
-a.news-title:hover {
-    text-decoration: underline;
-}
-
-.news-content {
-    margin-top: 30px;
-}
-
 
 .hovereffect:hover {
-    box-shadow: 0 5px 35px 0px rgba(0,0,0,.1);
+    box-shadow:
+    2px 2px #ccc,
+    4px 4px #ccc,
+    6px 6px #ccc;
+    -webkit-transform: translate(-8px, -8px);
+    transform: translate(-8px, -8px);
 }
-
 
 </style>
