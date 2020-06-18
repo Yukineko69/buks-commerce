@@ -1,0 +1,533 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<?php
+
+/**
+* @var \MyBC\ProductById\Block\ProductById $block
+*/
+
+?>
+
+<?php
+
+$root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+$parsedUrl = parse_url($root);
+// $root = $parsedUrl['scheme'] . '://' . $parsedUrl['host'] . $parsedUrl['path'];
+$root = $parsedUrl['scheme'] . '://' . $parsedUrl['host'] . '/magento';
+$url = $root . '/rest/V1/mybc-productbyid/30';
+
+?>
+
+<div class='doc'>
+    <div class='panel'>
+        <div class='panel-header railway size-24'>
+            Lấy thông tin sản phẩm
+        </div>
+        <section>
+            <div class='header-get'>
+                <div class='method-get railway'>
+                    GET
+                </div>
+                <div class='method-uri'>
+                    <code>&#047;rest/V1/mybc-productbyid/{ID}</code>
+                </div>
+            </div>
+            <div class='body'>
+                <div class='description'>
+                    <h4>Mô tả</h4>
+                    Truy xuất thông tin chi tiết một sản phẩm thông qua {id} của sản phẩm đấy.
+                </div>
+                <div class='parameters'>
+                    <h4>Tham số</h4>
+                    Các tham số đầu vào của API
+                    <div class='params'>
+                        <div class='list'>
+                            <div class='left'>
+                                <div class='bold'>ID</div>
+                            </div>
+                            <div class='right'>
+                                <span class='type'>
+                                    <code>int</code>
+                                </span>
+                                <br>
+                                Mã ID của sản phẩm cần truy xuất
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class='footer'>
+                    <div class='bold'>
+                        <h4>Response</h4>
+                    </div>
+                    <span class='type'>
+                        200
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <h3 style="margin-left:15px;">Ví dụ:</h3>
+
+        <section style="margin-top:0;padding-top:0;">
+            <div class='header-get'>
+                <div class='method-get railway'>
+                    GET
+                </div>
+                <div class='method-uri'>
+                    <code><a href="<?php echo $url ?>" style="color: blue;">rest/V1/mybc-productbyid/30</a></code>
+                    <button class="btn btn-primary float-right" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="margin-bottom:10px; float:right; padding: 5px;">
+                        Ẩn/Hiện XML
+                    </button>
+                </div>
+            </div>
+            <div class="body">
+                <div class="collapse" id="collapseExample">
+                    <textarea class="scrollable" name="name" rows="1000" cols="80">
+                        <response>
+                            <id>30</id>
+                            <sku>Vật Lý Của Tương Lai</sku>
+                            <name>Vật Lý Của Tương Lai</name>
+                            <attribute_set_id>12</attribute_set_id>
+                            <price>169000</price>
+                            <status>1</status>
+                            <visibility>4</visibility>
+                            <type_id>simple</type_id>
+                            <created_at>2020-06-14 15:49:34</created_at>
+                            <updated_at>2020-06-14 15:49:55</updated_at>
+                            <weight>0.55</weight>
+                            <extension_attributes>
+                                <website_ids>
+                                    <item>1</item>
+                                </website_ids>
+                                <category_links>
+                                    <item>
+                                        <position>0</position>
+                                        <category_id>11</category_id>
+                                    </item>
+                                    <item>
+                                        <position>0</position>
+                                        <category_id>13</category_id>
+                                    </item>
+                                </category_links>
+                            </extension_attributes>
+                            <product_links/>
+                            <options/>
+                            <media_gallery_entries>
+                                <item>
+                                    <id>19</id>
+                                    <media_type>image</media_type>
+                                    <label/>
+                                    <position>1</position>
+                                    <disabled>false</disabled>
+                                    <types>
+                                        <item>image</item>
+                                        <item>small_image</item>
+                                        <item>thumbnail</item>
+                                        <item>swatch_image</item>
+                                    </types>
+                                    <file>//c/0/c005a92d63d16bd1c3e566bfa355b14c.jpg</file>
+                                </item>
+                            </media_gallery_entries>
+                            <tier_prices/>
+                            <custom_attributes>
+                                <item>
+                                    <attribute_code>description</attribute_code>
+                                    <value>
+                                        <p style="text-align: center;"><strong>Vật Lý Của Tương Lai</strong></p> <p>Cuốn sách này đích thực là chuyến đi kỳ diệu xuyên suốt 100 năm tới của cuộc cách mạng khoa học ngoạn mục.</p> <p>Dựa trên tư liệu phỏng vấn hơn 300 nhà khoa học hàng đầu thế giới – những người đang phát minh ra tương lai trong phòng thí nghiệm – và tính đến các nguyên tắc an toàn của phát triển công nghệ, nhà vật lý lý thuyết nổi tiếng Michio Kaku đã miêu tả tường tận cuộc cách mạng trong y học, máy tính, vật lý lượng tử và du hành vũ trụ đang diễn ra. Tất cả rồi đây sẽ mãi mãi thay đổi cuộc sống của chúng ta và toàn bộ tiến trình văn minh nhân loại.</p> <p>Ai sẽ có việc làm? Những quốc gia nào sẽ thịnh vượng? Câu trả lời còn ở tương lai nhưng không quá xa tầm dự đoán."</p>
+                                    </value>
+                                </item>
+                                <item>
+                                    <attribute_code>tac_gia</attribute_code>
+                                    <value>Michio Kaku</value>
+                                </item>
+                                <item>
+                                    <attribute_code>image</attribute_code>
+                                    <value>//c/0/c005a92d63d16bd1c3e566bfa355b14c.jpg</value>
+                                </item>
+                                <item>
+                                    <attribute_code>url_key</attribute_code>
+                                    <value>vt-ly-ca-tuong-lai</value>
+                                </item>
+                                <item>
+                                    <attribute_code>gift_message_available</attribute_code>
+                                    <value>2</value>
+                                </item>
+                                <item>
+                                    <attribute_code>short_description</attribute_code>
+                                    <value>
+                                        <p>Cuốn sách này đích thực là chuyến đi kỳ diệu xuyên suốt 100 năm tới của cuộc cách mạng khoa học ngoạn mục.</p>
+                                    </value>
+                                </item>
+                                <item>
+                                    <attribute_code>nha_phat_hanh</attribute_code>
+                                    <value>Alpha Books</value>
+                                </item>
+                                <item>
+                                    <attribute_code>small_image</attribute_code>
+                                    <value>//c/0/c005a92d63d16bd1c3e566bfa355b14c.jpg</value>
+                                </item>
+                                <item>
+                                    <attribute_code>meta_title</attribute_code>
+                                    <value>Vật Lý Của Tương Lai</value>
+                                </item>
+                                <item>
+                                    <attribute_code>options_container</attribute_code>
+                                    <value>container2</value>
+                                </item>
+                                <item>
+                                    <attribute_code>nha_xuat_ban</attribute_code>
+                                    <value>NXB Thế Giới</value>
+                                </item>
+                                <item>
+                                    <attribute_code>thumbnail</attribute_code>
+                                    <value>//c/0/c005a92d63d16bd1c3e566bfa355b14c.jpg</value>
+                                </item>
+                                <item>
+                                    <attribute_code>meta_keyword</attribute_code>
+                                    <value>Vật Lý Của Tương Lai</value>
+                                </item>
+                                <item>
+                                    <attribute_code>ngay_xuat_ban</attribute_code>
+                                    <value>2020-02-29 00:00:00</value>
+                                </item>
+                                <item>
+                                    <attribute_code>swatch_image</attribute_code>
+                                    <value>//c/0/c005a92d63d16bd1c3e566bfa355b14c.jpg</value>
+                                </item>
+                                <item>
+                                    <attribute_code>meta_description</attribute_code>
+                                    <value>
+                                        Vật Lý Của Tương Lai Vật Lý Của Tương Lai Cuốn sách này đích thực là chuyến đi kỳ diệu xuyên suốt 100 năm tới của cuộc cách mạng khoa học ngoạn mục. Dựa trên tư liệu phỏng vấn hơn 300 nhà khoa học hàng đầu thế giới – những người đang phát minh ra tương
+                                    </value>
+                                </item>
+                                <item>
+                                    <attribute_code>so_trang</attribute_code>
+                                    <value>496</value>
+                                </item>
+                                <item>
+                                    <attribute_code>kich_thuoc</attribute_code>
+                                    <value>16.0 x 24.0 x 2.0 cm</value>
+                                </item>
+                                <item>
+                                    <attribute_code>tax_class_id</attribute_code>
+                                    <value>0</value>
+                                </item>
+                                <item>
+                                    <attribute_code>msrp_display_actual_price_type</attribute_code>
+                                    <value>0</value>
+                                </item>
+                                <item>
+                                    <attribute_code>category_ids</attribute_code>
+                                    <value>
+                                        <item>11</item>
+                                        <item>13</item>
+                                    </value>
+                                </item>
+                                <item>
+                                    <attribute_code>required_options</attribute_code>
+                                    <value>0</value>
+                                </item>
+                                <item>
+                                    <attribute_code>has_options</attribute_code>
+                                    <value>0</value>
+                                </item>
+                            </custom_attributes>
+                        </response>
+                    </textarea>
+                </div>
+
+                <div class='parameters scrollable2'>
+
+                    <h4>Tham số đầu ra</h4>
+                    Một số tham số đầu ra cần chú ý
+                    <div class='params'>
+                        <div class='list'>
+                            <div class='left'>
+                                <div class='bold'>id</div>
+                            </div>
+                            <div class='right'>
+                                <span class='type'>
+                                    <code>int</code>
+                                </span>
+                                <br>
+                                Mã ID của sản phẩm truy xuất
+                            </div>
+                        </div>
+                        <div class='list'>
+                            <div class='left'>
+                                <div class='bold'>sku</div>
+                            </div>
+                            <div class='right'>
+                                <span class='type'>
+                                    <code>string</code>
+                                </span>
+                                <br>
+                                Mã sku của sản phẩm truy xuất
+                            </div>
+                        </div>
+                        <div class='list'>
+                            <div class='left'>
+                                <div class='bold'>name</div>
+                            </div>
+                            <div class='right'>
+                                <span class='type'>
+                                    <code>string</code>
+                                </span>
+                                <br>
+                                Tên của sản phẩm truy xuất
+                            </div>
+                        </div>
+                        <div class='list'>
+                            <div class='left'>
+                                <div class='bold'>price</div>
+                            </div>
+                            <div class='right'>
+                                <span class='type'>
+                                    <code>float</code>
+                                </span>
+                                <br>
+                                Giá bán sản phẩm truy xuất (Đơn vị VNĐ)
+                            </div>
+                        </div>
+                        <div class='list'>
+                            <div class='left'>
+                                <div class='bold'>created_at</div>
+                            </div>
+                            <div class='right'>
+                                <span class='type'>
+                                    <code>datetime</code>
+                                </span>
+                                <br>
+                                Thời gian tạo sản phẩm
+                            </div>
+                        </div>
+                        <div class='list'>
+                            <div class='left'>
+                                <div class='bold'>updated_at</div>
+                            </div>
+                            <div class='right'>
+                                <span class='type'>
+                                    <code>datetime</code>
+                                </span>
+                                <br>
+                                Thời gian cập nhật sản phẩm lần cuối
+                            </div>
+                        </div>
+                        <div class='list'>
+                            <div class='left'>
+                                <div class='bold'>weight</div>
+                            </div>
+                            <div class='right'>
+                                <span class='type'>
+                                    <code>float</code>
+                                </span>
+                                <br>
+                                Cân nặng của sản phẩm (Đơn vị kg)
+                            </div>
+                        </div>
+                        <div class='list'>
+                            <div class='left'>
+                                <div class='bold'>custom_attributes</div>
+                            </div>
+                            <div class='right'>
+                                <span class='type'>
+                                    <code>object</code>
+                                </span>
+                                <br>
+                                <ul>
+                                    <li class='tr'>description</li>
+                                    <li class='td'><br> &mdash; <span class='type'>Thông tin mô tả sản phẩm</li>
+                                    <li class='clear'></li>
+                                    <li class='tr'>short_description</li>
+                                    <li class='td'><br> &mdash; Thông tin mô tả thu gọn của sản phẩm</li>
+                                    <li class='clear'></li>
+                                    <li class='tr'>tac_gia</li>
+                                    <li class='td'><br> &mdash; Tên tác giả của sản phẩm</li>
+                                    <li class='clear'></li>
+                                    <li class='tr'>nha_phat_hanh</li>
+                                    <li class='td'><br> &mdash; Tên nhà phát hành của sản phẩm</li>
+                                    <li class='clear'></li>
+                                    <li class='tr'>nha_xuat_ban</li>
+                                    <li class='td'><br> &mdash; Tên nhà xuất bản của sản phẩm</li>
+                                    <li class='clear'></li>
+                                    <li class='tr'>ngay_xuat_ban</li>
+                                    <li class='td'><br> &mdash; Ngày xuất bản của sản phẩm</li>
+                                    <li class='clear'></li>
+                                    <li class='tr'>so_trang</li>
+                                    <li class='td'><br> &mdash; Thông tin về số trang của sản phẩm</li>
+                                    <li class='clear'></li>
+                                    <li class='tr'>kich_thuoc</li>
+                                    <li class='td'><br> &mdash; Thông tin về kích thước của sản phẩm</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+<style media="screen">
+
+.clear{
+  display:block;
+  width:100%;
+  height:0;
+}
+
+.tr{
+  width:20px;
+}
+.td{
+  width:450px;
+}
+
+.scrollable {
+    height: 400px;
+    overflow: scroll;
+    color: white;
+    background-color: #2e2e2e;
+}
+
+.scrollable2 {
+    height: 500px!important;
+    overflow: scroll!important;
+}
+
+.page-title-wrapper {
+    display: none;
+}
+
+.doc * {
+    margin: 0;
+    padding: 0
+}
+.doc {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.right > ul > li {
+    float:left;
+    list-style:none;
+    min-width:30px;
+    max-width:400px;
+}
+
+.panel{
+    margin:10px;
+    padding:0;
+    border:solid thin gray;
+    border-radius:10px;
+    overflow:hidden;
+}
+.panel-header{
+    border-bottom:solid thin gray;
+    background:#eeeeee!important;
+    padding:10px;
+}
+.header-get{
+    margin:15px;
+    margin-bottom:0;
+    border:solid thin green;
+    clear:both;
+    border-radius:4px 4px 0 0;
+    content:"";
+    display:table;
+    width:calc(100% - 30px);
+    background:#C8F7C5!important;
+}
+.method-get{
+    float:left;
+    border:solid thin darkgreen;
+    background:lightgreen!important;
+    margin:10px;
+    padding:3px;
+    overflow:hidden;
+    border-radius:5px;
+}
+.method-uri{
+    margin:13px;
+}
+.body{
+    margin:15px;
+    margin-right:13px;
+    margin-top:0;
+    background:#eeeeee!important;
+    border:solid thin #BDC3C7;
+    border-top:0;
+    padding:10px;
+    width:calc(100% - 30px);
+    display:table;
+    clear:both;
+}
+.description,.parameters{
+    width:calc(100% - 15px);
+    padding:5px;
+    margin:10px;
+}
+.params{
+    margin-top:5px;
+    padding-top:10px;
+    width:calc(100% );
+    display:table;
+    border-top:solid thin #cccccc;
+}
+.left{
+    float:left;
+    width:130px;
+    text-align:right;
+    margin-right:20px;
+}
+.right{
+    float:right;
+    width:400px;
+    text-align:left;
+}
+.parameters{
+    border-top:solid thin #cccccc;
+    padding:5px;
+    width:calc(100% - 30px);
+}
+
+code{
+    color:black!important;
+    background:#ccc!important;
+    border-radius:10px;
+    display:inline-block;
+}
+.list{
+    display:table;
+    padding:5px;
+}
+.footer{
+    width:calc(100% - 15px);
+    padding:5px;
+    margin:10px;
+    border-top:solid thin #cccccc;
+}
+.method-post{
+    float:left;
+    border:solid thin darkblue;
+    background:lightblue!important;
+    margin:10px;
+    padding:3px;
+    overflow:hidden;
+    border-radius:5px;
+}
+.header-post{
+    margin:15px;
+    margin-bottom:0;
+    border:solid thin blue;
+    clear:both;
+    border-radius:4px 4px 0 0;
+    content:"";
+    display:table;
+    width:calc(100% - 30px);
+    background:#D9DDFA!important;
+}
+
+</style>

@@ -75,8 +75,8 @@ $array = json_decode($json, TRUE);
     }
 ?>
 
-<h3>Tỉ giá quy đổi ngoại tệ VNĐ, cập nhật lần cuối bởi Vietcombank vào lúc: <?php echo $array['DateTime'] ?></h3>
-<table class="table table-striped table-bordered table-hover" style="margin-top: 40px;">
+<h2 style="margin-top: 30px;">Tỉ giá quy đổi ngoại tệ VNĐ, cập nhật lần cuối bởi Vietcombank vào lúc: <?php echo $array['DateTime'] ?></h3>
+<table class="table table-striped table-bordered table-hover">
     <thead class="thead-blue">
     <tr>
         <th scope="col" class="bigger">STT</th>
@@ -91,6 +91,7 @@ $array = json_decode($json, TRUE);
     <?php foreach ($array['Exrate'] as $k => $currency): ?>
         <?php
             $countryCode = substr($currency['@attributes']['CurrencyCode'], 0, 2);
+            $buyRate = ($currency['@attributes']['Buy'] != '-') ? $currency['@attributes']['Buy'] . ' đ' : 'Không có thông tin';
         ?>
         <tr>
             <th scope="row" class="bigger"><?php echo $k+1 ?></th>
@@ -98,7 +99,7 @@ $array = json_decode($json, TRUE);
                 <img src="https://www.countryflags.io/<?php echo $countryCode ?>/shiny/24.png">
                 <?php echo $currency['@attributes']['CurrencyCode'] ?></td>
             <td class="bigger"><?php echo getCurrencyNameVnese($currency['@attributes']['CurrencyCode']) ?></td>
-            <td class="bigger"><?php echo $currency['@attributes']['Buy'] ?> đ</td>
+            <td class="bigger"><?php echo $buyRate ?></td>
             <td class="bigger"><?php echo $currency['@attributes']['Transfer'] ?> đ</td>
             <td class="bigger"><?php echo $currency['@attributes']['Sell'] ?> đ</td>
         </tr>

@@ -41,6 +41,7 @@ class ProductById implements ProductByIdInterface {
     * {@inheritdoc}
     */
     public function getProductById($id) {
-        return $this->productRepository->getById($id);
+        $result = $this->productRepository->getById($id);
+        return $result;
     }
 }

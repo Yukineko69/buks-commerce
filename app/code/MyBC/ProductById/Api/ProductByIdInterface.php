@@ -12,4 +12,5 @@ interface ProductByIdInterface {
     * @throws \Magento\Framework\Exception\NoSuchEntityException
     */
     public function getProductById($id);
+
 }
