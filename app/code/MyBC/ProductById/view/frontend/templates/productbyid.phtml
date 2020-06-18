@@ -30,9 +30,9 @@ curl_close($ch);
 $array = json_decode($result);
 
 ?>
-
+<h2 style="margin-bottom:40px; margin-top:-10px;">Hướng dẫn sử dụng API để lấy thông tin sản phẩm</h2>
 <div class='doc'>
-    <div class='panel'>
+    <div class='panel2'>
         <div class='panel-header railway size-24'>
             Lấy thông tin sản phẩm
         </div>
@@ -93,16 +93,25 @@ $array = json_decode($result);
             <div class="body">
                 <div class="description">
                     <p>Mã nguồn php để đọc API:</p>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="margin-top:5px;margin-bottom:5px;padding: 5px;">
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="margin-top:5px;margin-bottom:10px;padding: 5px;">
                         Hiện kết quả
                     </button>
                     <code>
                         <xmp style="white-space: pre-wrap; word-wrap: break-word;">
+// Lấy root url của server
 $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 $parsedUrl = parse_url($root);
-// $root = $parsedUrl['scheme'] . '://' . $parsedUrl['host'] . $parsedUrl['path'];
-$root = $parsedUrl['scheme'] . '://' . $parsedUrl['host'] . '/magento'; //path của localhost/magento
-$url = $root . '/rest/V1/mybc-productbyid/30';
+$root = $parsedUrl['scheme'] . '://' . $parsedUrl['host'] . '/magento'; // path của http://localhost/magento
+$url = $root . '/rest/V1/mybc-productbyid/30'; // GET API cho sản phẩm có id=30
+
+// Đọc dữ liệu với cUrl
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_URL, $url);
+$result = curl_exec($ch);
+curl_close($ch);
+$array = json_decode($result); // Chuyển đổi từ dạng xml sang json
                         </xmp>
                     </code>
                 </div>
@@ -293,7 +302,7 @@ $url = $root . '/rest/V1/mybc-productbyid/30';
     max-width:200px;
 }
 
-.panel{
+.panel2{
     margin:10px;
     padding:0;
     border:solid thin gray;
